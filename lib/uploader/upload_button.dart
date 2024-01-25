@@ -6,18 +6,20 @@ class UploadButton extends StatelessWidget {
   final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
+    double imageWidth = 100;
     return InkWell(
       onTap: onTap,
       child: Container(
-        width: 80,
-        height: 80,
-        decoration: const BoxDecoration(
-          color: Color.fromRGBO(231, 233, 236, 1),
+        width: imageWidth,
+        height: imageWidth,
+        decoration: BoxDecoration(
+          color: Colors.black,
+          borderRadius: BorderRadius.circular(8),
         ),
         child: const Center(
           child: Icon(
             Icons.camera_alt_rounded,
-            color: Color.fromRGBO(220, 222, 224, 1),
+            color: Colors.white,
             size: 36,
           ),
         ),
