@@ -44,7 +44,7 @@ class UploaderState extends State<Uploader> {
     return ListenableBuilder(
         listenable: widget.uploadController,
         builder: (BuildContext context, Widget? child) {
-          var fileList = widget.uploadController.fileList;
+          var fileList = widget.uploadController.data;
           return Wrap(
             spacing: 10,
             runSpacing: 10,

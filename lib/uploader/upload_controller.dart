@@ -5,48 +5,51 @@ class UploadController extends ChangeNotifier {
   int maxCount;
 
   UploadController({this.maxCount = 9});
-  List<UploadFileItem> fileList = [];
+  List<UploadFileItem> _fileList = [];
 
-  bool get isDone => fileList.every((el) => el.status == UploadStatusEnum.done);
+  List<UploadFileItem> get data => _fileList;
 
-  List<String> get urls => fileList
+  bool get isDone =>
+      _fileList.every((el) => el.status == UploadStatusEnum.done);
+
+  List<String> get urls => _fileList
       .map((el) => el.url)
       .where((element) => element != null)
       .map((element) => element!)
       .toList();
 
-  int get count => fileList.length;
+  int get count => _fileList.length;
   bool get isFull => count >= maxCount;
 
   changeStatus(int idx, UploadStatusEnum status) {
-    fileList[idx].status = status;
+    _fileList[idx].status = status;
     notifyListeners();
   }
 
   changeUrl(int idx, String url) {
-    fileList[idx].url = url;
+    _fileList[idx].url = url;
     notifyListeners();
   }
 
   addFileItem(UploadFileItem fileItem) {
-    fileList.add(fileItem);
+    _fileList.add(fileItem);
     notifyListeners();
   }
 
   removeFileItem(int idx) {
-    fileList.removeAt(idx);
+    _fileList.removeAt(idx);
     notifyListeners();
   }
 
-  addInitUrls(List<String> urls) {
+  addInitialUrls(List<String> urls) {
     var datas = urls.map((urlItem) => UploadFileItem(url: urlItem));
-    fileList.addAll(datas);
+    _fileList.addAll(datas);
     notifyListeners();
   }
 
   @override
   void dispose() {
-    fileList = [];
+    _fileList = [];
     super.dispose();
   }
 }
